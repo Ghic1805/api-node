@@ -62,7 +62,7 @@ module.exports = {
         res.json(json);
     },
     edit: async (req, res) => {
-        let json = {error: '', result: {}}
+        let json = {error: '', result: {}};
 
         let id = req.params.id;
         let descricao = req.body.descricao;
@@ -85,9 +85,9 @@ module.exports = {
                     valor_de_venda,
                     tipo,
                     forma_de_comercializacao
-                }
+                };
 
-            }
+            };
 
 
         } else {

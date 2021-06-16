@@ -12,10 +12,10 @@ module.exports = {
 
         });
     },
-    findById: (id) => {
+    findById: (id_client) => {
         return new Promise((resolve, reject)=>{
 
-            db.query('SELECT * FROM clients WHERE id = ?', [id], (error, results) => {
+            db.query('SELECT * FROM clients WHERE id_client = ?', [id_client], (error, results) => {
                 if(error) { reject(error); return; }
                 if(results.length > 0) {
                     resolve(results[0]);
@@ -39,7 +39,7 @@ module.exports = {
 
         });
     },
-    update: (id, nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento) => {
+    update: (id_client, nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento) => {
         // {
         // "cep": "88085-120",
         // "logradouro": "Rua Joaquim Carneiro",
@@ -65,7 +65,7 @@ module.exports = {
 
         return new Promise((resolve, reject)=>{
             db.query('UPDATE clients SET nome = ?, tipo_pessoa = ?, cpf_cnpj = ?, cep = ?, endereco = ?, bairro = ?, cidade = ?, estado = ?, pais = ?, numero = ?, complemento = ? WHERE id = ?',
-                [nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento, id],
+                [nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento, id_client],
                 (error, results) => {
                     // console.log(error);
                     // console.log(results);
@@ -75,10 +75,10 @@ module.exports = {
             )
         });
     },
-    delete: (id) => {
+    delete: (id_client) => {
         return new Promise((resolve, reject)=>{
 
-            db.query('DELETE FROM clients WHERE id = ?', [id], (error, results) => {
+            db.query('DELETE FROM clients WHERE id = ?', [id_client], (error, results) => {
                 if(error) { reject(error); return; }
                 resolve(results);
             });

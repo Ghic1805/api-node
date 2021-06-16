@@ -12,7 +12,7 @@ module.exports = {
 
         for(let i in clients) {
             json.result.push({
-                id: clients[i].id,
+                id_client: clients[i].id_client,
                 nome: clients[i].descricao,
                 tipo_pessoa: clients[i].tipo_pessoa,
                 cpf_cnpj: clients[i].cpf_cnpj,
@@ -57,7 +57,7 @@ module.exports = {
             let clientId = await ClientService.add(body);
 
             json.result = {
-                id: clientId,
+                id_client: clientId,
                 ...body
             }
 
@@ -74,7 +74,7 @@ module.exports = {
         
         //nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento
 
-        let id = req.params.id;
+        let id_client = req.params.id_client;
         let nome = req.body.nome;
         let tipo_pessoa = req.body.tipo_pessoa;
         let cpf_cnpj = req.body.cpf_cnpj;
@@ -87,7 +87,7 @@ module.exports = {
         let numero = req.body.numero;
         let complemento = req.body.complemento;
 
-        if(id && nome && tipo_pessoa && cpf_cnpj && cep && endereco && bairro && cidade && estado && pais && numero && complemento) {
+        if(id_client && nome && tipo_pessoa && cpf_cnpj && cep && endereco && bairro && cidade && estado && pais && numero && complemento) {
 
             // const http = require('http');
             // const cep = '88085120'
@@ -114,13 +114,13 @@ module.exports = {
             // req.end();
             // console.log(req);
 
-            const result = await ClientService.update(id, nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento);
+            const result = await ClientService.update(id_client, nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento);
             
             if (result.affectedRows === 0) {
                 json.error = 'falhou';
             } else {
                 json.result = {
-                    id,
+                    id_client,
                     nome,
                     tipo_pessoa,
                     cpf_cnpj,

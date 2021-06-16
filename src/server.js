@@ -8,7 +8,8 @@ const { route } = require('./routes');
 
 const server = express();
 server.use(cors()); //requisitar nossa api em qualquer dispositivo
-server.use(bodyParser.urlencoded({extended: false})); //vai pegar dados de post, get, parametros e ajustar para podemos usar no codigo
+server.use(bodyParser.urlencoded({extended: true})); //vai pegar dados de post, get, parametros e ajustar para podemos usar no codigo
+server.use(express.json());
 server.use('/api', routes);
 
 //inicializar server

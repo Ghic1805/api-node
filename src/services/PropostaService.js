@@ -4,7 +4,7 @@ module.exports = {
     getAll: () => {
         return new Promise((resolve, reject)=>{
 
-            db.query('SELECT * FROM products', (error, results)=>{
+            db.query('SELECT * FROM propostas', (error, results)=>{
                 if(error) { reject(error); return; }
                 resolve(results);
             });
@@ -14,7 +14,7 @@ module.exports = {
     findById: (id) => {
         return new Promise((resolve, reject)=>{
 
-            db.query('SELECT * FROM products WHERE id = ?', [id], (error, results) => {
+            db.query('SELECT * FROM propostas WHERE id = ?', [id], (error, results) => {
                 if(error) { reject(error); return; }
                 if(results.length > 0) {
                     resolve(results[0]);
@@ -25,11 +25,11 @@ module.exports = {
 
         });
     },
-    add: ({descricao, descritivo, valor_de_venda, tipo, forma_de_comercializacao}) => {
+    add: ({codigo, assunto, data, data_validade, id_client}) => {
         return new Promise((resolve, reject)=>{
 
-            db.query('INSERT INTO products (descricao, descritivo, valor_de_venda, tipo, forma_de_comercializacao) VALUES (?, ?, ?, ?, ?)',
-                [descricao, descritivo, valor_de_venda, tipo, forma_de_comercializacao],
+            db.query('INSERT INTO propostas (codigo, assunto, data, data_validade, id_client) VALUES (?, ?, ?, ?, ?)',
+                [codigo, assunto, data, data_validade, id_client],
                 (error, results) => {
                     if(error) { reject(error); return; }
                     resolve(results.insertId);
@@ -38,14 +38,14 @@ module.exports = {
 
         });
     },
-    update: (id, descricao, descritivo, valor_de_venda, tipo, forma_de_comercializacao) => {        
+    update: (id, codigo, assunto, data, data_validade, id_client) => {        
 
         return new Promise((resolve, reject)=>{
-            db.query('UPDATE products SET descricao = ?, descritivo = ?, valor_de_venda = ?, tipo = ?, forma_de_comercializacao = ? WHERE id = ?',
-                [descricao, descritivo, valor_de_venda, tipo, forma_de_comercializacao, id],
+            db.query('UPDATE propostas SET codigo = ?, assunto = ?, data = ?, data_validade = ?, id_client = ? WHERE id = ?',
+                [codigo, assunto, data, data_validade, id_client, id],
                 (error, results) => {
                     // console.log(error);
-                    console.log(results);
+                    // console.log(results);
                     if(error) { reject(error); return; }
                     resolve(results);
                 }
@@ -55,7 +55,7 @@ module.exports = {
     delete: (id) => {
         return new Promise((resolve, reject)=>{
 
-            db.query('DELETE FROM products WHERE id = ?', [id], (error, results) => {
+            db.query('DELETE FROM propostas WHERE id = ?', [id], (error, results) => {
                 if(error) { reject(error); return; }
                 resolve(results);
             });
