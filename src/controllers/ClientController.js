@@ -12,8 +12,8 @@ module.exports = {
 
         for(let i in clients) {
             json.result.push({
-                id_client: clients[i].id_client,
-                nome: clients[i].descricao,
+                id: clients[i].id,
+                nome: clients[i].nome,
                 tipo_pessoa: clients[i].tipo_pessoa,
                 cpf_cnpj: clients[i].cpf_cnpj,
                 cep: clients[i].cep,
@@ -74,7 +74,7 @@ module.exports = {
         
         //nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento
 
-        let id_client = req.params.id_client;
+        let id = req.params.id;
         let nome = req.body.nome;
         let tipo_pessoa = req.body.tipo_pessoa;
         let cpf_cnpj = req.body.cpf_cnpj;
@@ -87,9 +87,7 @@ module.exports = {
         let numero = req.body.numero;
         let complemento = req.body.complemento;
 
-        if(id_client && nome && tipo_pessoa && cpf_cnpj && cep && endereco && bairro && cidade && estado && pais && numero && complemento) {
-
-            // const http = require('http');
+        // const http = require('http');
             // const cep = '88085120'
 
             // const options = {
@@ -114,13 +112,15 @@ module.exports = {
             // req.end();
             // console.log(req);
 
-            const result = await ClientService.update(id_client, nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento);
+        if(id && nome && tipo_pessoa && cpf_cnpj && cep && endereco && bairro && cidade && estado && pais && numero && complemento) {
+
+            const result = await ClientService.update(id, nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento);
             
             if (result.affectedRows === 0) {
                 json.error = 'falhou';
             } else {
                 json.result = {
-                    id_client,
+                    id,
                     nome,
                     tipo_pessoa,
                     cpf_cnpj,
@@ -132,14 +132,14 @@ module.exports = {
                     pais,
                     numero,
                     complemento
-                }
+                };
 
-            }
+            };
 
 
         } else {
             json.error = 'campos não enviados';
-        }
+        };
 
         res.json(json);
     },
