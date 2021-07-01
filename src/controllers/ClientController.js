@@ -112,9 +112,9 @@ module.exports = {
             // req.end();
             // console.log(req);
 
-        if(id && nome && tipo_pessoa && cpf_cnpj && cep && endereco && bairro && cidade && estado && pais && numero && complemento) {
+        if(id && nome && tipo_pessoa && cpf_cnpj && cep && endereco /*&& bairro && cidade && estado && pais && numero && complemento*/) {
 
-            const result = await ClientService.update(id, nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento);
+            const result = await ClientService.update(id, nome, tipo_pessoa, cpf_cnpj, cep, endereco/*, bairro, cidade, estado, pais, numero, complemento*/);
             
             if (result.affectedRows === 0) {
                 json.error = 'falhou';
@@ -125,13 +125,13 @@ module.exports = {
                     tipo_pessoa,
                     cpf_cnpj,
                     cep,
-                    endereco,
+                    endereco/*,
                     bairro,
                     cidade,
                     estado,
                     pais,
                     numero,
-                    complemento
+                    complemento*/
                 };
 
             };
