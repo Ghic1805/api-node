@@ -8,15 +8,17 @@ module.exports = {
         let json = {error: '', result: []}
 
         let propostas = await PropostaService.getAll();
+        
 
         for(let i in propostas) {
             json.result.push({
-                id: propostas[i].id,
+                id: propostas[i].proposta_id,
                 codigo: propostas[i].codigo,
                 assunto: propostas[i].assunto,
                 data: propostas[i].data,
                 data_validade: propostas[i].data_validade,
-                id_client: propostas[i].id_client
+                id_client: propostas[i].client_id,
+                nome: propostas[i].nome
             });
         }
 
@@ -69,7 +71,7 @@ module.exports = {
         let assunto = req.body.assunto;
         let data = req.body.data;
         let data_validade = req.body.data_validade;
-        let id_client = req.body.id_client;
+        let id_client = req.body.id_client; /* aqui tem q ver se eh id_client ou nome*/
 
         if(id && codigo && assunto && data && data_validade && id_client) {
 
@@ -86,7 +88,6 @@ module.exports = {
                     data_validade,
                     id_client
                 }
-
             }
 
 

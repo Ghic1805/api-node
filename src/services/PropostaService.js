@@ -4,7 +4,7 @@ module.exports = {
     getAll: () => {
         return new Promise((resolve, reject)=>{
 
-            db.query('SELECT * FROM propostas', (error, results)=>{
+            db.query('SELECT propostas.id as proposta_id, propostas.codigo as codigo, propostas.assunto as assunto, propostas.data as data, propostas.data_validade as data_validade, clients.id as client_id, clients.nome as nome FROM propostas inner join clients on propostas.id_client = clients.id', (error, results)=>{
                 if(error) { reject(error); return; }
                 resolve(results);
             });

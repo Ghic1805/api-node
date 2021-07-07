@@ -68,7 +68,7 @@ module.exports = {
                 [nome, tipo_pessoa, cpf_cnpj, cep, endereco, bairro, cidade, estado, pais, numero, complemento, id],
                 (error, results) => {
                    // console.log(error);
-                   // console.log(results);
+                   //console.log(results);
                     if(error) { reject(error); return; }
                     resolve(results);
                 }
